@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 mEditText = findViewById(R.id.urlText);
-                String URLText = mEditText.getText().toString();
+                String urlText = mEditText.getText().toString();
 
                 downloadEndListener = new DownloadImageFileTask.DownloadEndListener() {
                     @Override
@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
 
                 DownloadImageFileTask task = new DownloadImageFileTask();
                 task.setDownloadEndListener(downloadEndListener);
-                task.execute(URLText);
+                task.execute(urlText);
             }
         });
 
