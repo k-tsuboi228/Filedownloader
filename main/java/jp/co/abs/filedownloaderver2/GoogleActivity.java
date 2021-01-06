@@ -3,6 +3,7 @@ package jp.co.abs.filedownloaderver2;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,10 +19,19 @@ import android.widget.Toast;
 
 
 public class GoogleActivity extends Activity {
+    private static final String INTENT_PARAM_URL = "url";
 
     private WebView mWebView;
 
-    @SuppressLint("NewApi")
+    public static Intent createStartActivityIntent(Context context, String url){
+        Intent intent = new Intent(context, GoogleActivity.class);
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        intent.putExtra(INTENT_PARAM_URL, url);
+
+        return intent;
+    }
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +48,9 @@ public class GoogleActivity extends Activity {
                 return false;
             }
         });
-        mWebView.loadUrl(url);
-
+        if (url != null) {
+            mWebView.loadUrl(url);
+        }
         mWebView.setDownloadListener(new DownloadListener() {
 
             @Override
@@ -79,14 +90,13 @@ public class GoogleActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (mWebView.canGoBack()) {
-                        mWebView.goBack();
-                    } else {
-                        finish();
-                    }
-                    return true;
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                if (mWebView.canGoBack()) {
+                    mWebView.goBack();
+                } else {
+                    finish();
+                }
+                return true;
             }
 
         }

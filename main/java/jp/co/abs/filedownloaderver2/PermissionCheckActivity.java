@@ -39,7 +39,7 @@ public class PermissionCheckActivity extends AppCompatActivity {
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             }
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
             }
         }

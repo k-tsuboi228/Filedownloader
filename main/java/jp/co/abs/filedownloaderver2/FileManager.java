@@ -59,24 +59,13 @@ public class FileManager {
     private String getFileName() {
         Date mDate = new Date();
         SimpleDateFormat fileNameFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.ENGLISH);
-        String fileName = fileNameFormat.format(mDate) + ".jpg";
 
-        return fileName;
+        return fileNameFormat.format(mDate) + ".jpg";
     }
 
-    /*
-    protected String getFileName(){
-        String[] p = url.split("/");
-        String s = p[p.length-1];
-        if(s.indexOf("?") > -1){
-            return s.substring(0, s.indexOf("?"));
-        }
-        return s;
-    }
-*/
     private File getSdStorageDir(String albumName) {
-        String extStrageDir = Environment.getExternalStorageDirectory().getPath();
-        File dir = new File(extStrageDir, albumName);
+        String extStorageDir = Environment.getExternalStorageDirectory().getPath();
+        File dir = new File(extStorageDir, albumName);
         Log.d("dir", "" + dir);
         if (!dir.exists()) {
             if (!dir.mkdirs()) {

@@ -11,6 +11,10 @@ public final class DownloadImageFileTask extends AsyncTask<String, Void, Bitmap>
 
     private DownloadEndListener mDownloadEndListener;
 
+    public DownloadImageFileTask() {
+        super();
+    }
+
     @Override
     protected Bitmap doInBackground(String... strings) {
         Bitmap image = null;
@@ -28,7 +32,6 @@ public final class DownloadImageFileTask extends AsyncTask<String, Void, Bitmap>
         }
         return image;
     }
-
 
     @Override
     protected void onPostExecute(Bitmap image) {
